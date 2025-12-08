@@ -24,11 +24,16 @@ The NEXT-Generation API Configuration & Orchestration Runtime Engine.
 
 ## 简介
 
-APICORE 是一个由 SRON 团队 研发的​​统一API配置解决方案​​，通过声明式配置文件实现：
+APICORE 是一个由 SRON 团队 研发的​，**面向 UI 的、轻量级 API 交互**描述规范。
 
-- **🔄 ​广泛兼容性**: APICORE 规范自身具有强大的可扩展性，无论是各种参数或响应格式都可以轻松兼容。
-- **⚡ 简明易读性**: APICORE 的标准参数关键词均为日常生活中的通俗用语，简单易懂。
-- **📦 ​​描述标准化​**: APICORE 专注于解决多个应用程序之间API配置管理中的碎片化问题，让开发者告别重复对接工作，专注于核心业务逻辑。
+遵循 **"Optional Complexity"（可选复杂性）** 的设计理念，开发者只需编写一个简单的 `.api.json` 文件，即可描述从简单的 HTTP 请求到包含鉴权、重试机制、参数动态引用、错误分支处理**的复杂 API 交互逻辑。
+
+## 核心特性
+
+- **🎨 UI 优先的元数据系统**：通过 `friendly_name`, `placeholder`, `tooltip`, `text_secret` 等字段，直接指导前端渲染出对人类友好的交互表单。
+- **🧠 智能状态处理**：利用 `handlers` 字段构建状态机，针对 401 (鉴权失败)、429 (限流)、200 (成功) 定义不同的行为分支，支持自动重试 (`retry`)、错误提取 (`extract`) 和 友好提示 (`message`) 等丰富操作。
+- **🔗 动态变量注入**：支持在 URL、Header 和 Body 中使用 `{{parameters.api_key}}` 语法引用用户输入。无论是 Bearer Token 还是自定义签名头，都能灵活配置。
+- **⚙️ 全局行为控制**：通过 `configs` 模块统一管理超时策略、默认请求头和速率限制，将业务逻辑与底层网络配置解耦。
 
 ## 为什么选择我们的 APICORE
 
