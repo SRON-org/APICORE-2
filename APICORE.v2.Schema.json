@@ -1,0 +1,269 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/SRON-org/APICORE-2/schemas/v2.0/apicore.schema.json",
+  "title": "APICORE v2 Configuration File",
+  "description": "Configuration specification for APICORE v2 API interactions",
+  "type": "object",
+  "required": [
+    "friendly_name",
+    "link",
+    "func",
+    "APICORE_version",
+    "parameters",
+    "response"
+  ],
+  "properties": {
+    "friendly_name": {
+      "type": "string",
+      "description": "Name of the API interface for UI display"
+    },
+    "intro": {
+      "type": "string",
+      "description": "Brief introduction of the API"
+    },
+    "icon": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL of the API icon"
+    },
+    "link": {
+      "type": "string",
+      "format": "uri",
+      "description": "Full URL of the API endpoint"
+    },
+    "func": {
+      "type": "string",
+      "enum": ["GET", "POST", "PUT", "DELETE", "HEAD", "PATCH", "OPTIONS"],
+      "description": "HTTP request method (uppercase)"
+    },
+    "APICORE_version": {
+      "const": "2.0",
+      "description": "Version identifier, must be '2.0'"
+    },
+    "configs": {
+      "$ref": "#/$defs/configs"
+    },
+    "parameters": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/parameter"
+      },
+      "description": "List of API request parameters"
+    },
+    "handlers": {
+      "$ref": "#/$defs/handlers"
+    },
+    "response": {
+      "$ref": "#/$defs/response"
+    }
+  },
+  "$defs": {
+    "configs": {
+      "type": "object",
+      "properties": {
+        "request": {
+          "type": "object",
+          "properties": {
+            "headers": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "description": "HTTP request headers"
+            },
+            "timeout_ms": {
+              "type": "integer",
+              "default": 30000
+            }
+          }
+        },
+        "retry": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "default": 3
+            },
+            "delay_ms": {
+              "type": "integer",
+              "default": 1000
+            }
+          }
+        },
+        "rate_limit": {
+          "type": "object",
+          "properties": {
+            "frequency": {
+              "type": "integer"
+            },
+            "per": {
+              "type": "string",
+              "enum": ["sec", "min", "hour", "day"],
+              "default": "min"
+            }
+          }
+        }
+      }
+    },
+    "parameter": {
+      "type": "object",
+      "required": ["type", "friendly_name", "value"],
+      "properties": {
+        "enable": {
+          "type": "boolean",
+          "default": true
+        },
+        "name": {
+          "type": "string",
+          "description": "Parameter key name. Optional for GET/HEAD."
+        },
+        "type": {
+          "type": "string",
+          "description": "Parameter type (standard or custom)"
+        },
+        "required": {
+          "type": "boolean",
+          "default": true
+        },
+        "friendly_name": {
+          "type": "string"
+        },
+        "tooltip": {
+          "type": "string"
+        },
+        "value": {
+          "description": "Default value"
+        },
+        "placeholder": {
+          "type": "string"
+        },
+        "text_secret": {
+          "type": "boolean",
+          "default": false
+        },
+        "friendly_value": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "min_value": {
+          "type": ["integer", "number", "null"]
+        },
+        "max_value": {
+          "type": ["integer", "number", "null"]
+        },
+        "split_str": {
+          "type": ["string", "null"]
+        }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "type": { "const": "enum" } } },
+          "then": { "required": ["friendly_value"] }
+        },
+        {
+          "if": { "properties": { "type": { "const": "list" } } },
+          "then": { "required": ["split_str"] }
+        },
+        {
+          "if": { "properties": { "type": { "enum": ["integer", "number"] } } },
+          "then": {
+            "properties": {
+              "value": { "type": "number" }
+            }
+          }
+        },
+        {
+          "if": { "properties": { "type": { "const": "boolean" } } },
+          "then": {
+            "properties": {
+              "value": { "type": "boolean" }
+            }
+          }
+        }
+      ]
+    },
+    "handlers": {
+      "type": "object",
+      "propertyNames": {
+        "pattern": "^([1-5]\\d{2}|default)$",
+        "description": "Must be an HTTP status code (e.g., 200, 404) or 'default'"
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/handler_rule"
+      }
+    },
+    "handler_rule": {
+      "type": "object",
+      "required": ["action"],
+      "properties": {
+        "action": {
+          "type": "string",
+          "enum": ["response", "success", "warning", "error", "message", "browser", "run", "retry", "return"]
+        },
+        "message": { "type": "string" },
+        "extract": {
+          "type": "object",
+          "additionalProperties": { "type": "string" }
+        },
+        "link": { "type": "string" },
+        "script": { "type": "string" },
+        "front": { "type": "boolean", "default": false },
+        "count": { "type": "integer" },
+        "delay_ms": { "type": "integer" }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "action": { "const": "browser" } } },
+          "then": { "required": ["link"] }
+        },
+        {
+          "if": { "properties": { "action": { "const": "run" } } },
+          "then": { "required": ["script"] }
+        },
+        {
+          "if": { "properties": { "action": { "const": "retry" } } },
+          "then": { "required": ["count", "delay_ms"] }
+        }
+      ]
+    },
+    "response": {
+      "type": "object",
+      "required": ["image"],
+      "properties": {
+        "image": {
+          "type": "object",
+          "required": ["content_type", "path"],
+          "properties": {
+            "content_type": { "enum": ["URL", "BINARY"] },
+            "path": { "type": "string" },
+            "is_list": { "type": "boolean", "default": false },
+            "is_base64": { "type": "boolean", "default": false }
+          }
+        },
+        "others": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["friendly_name", "data"],
+            "properties": {
+              "friendly_name": { "type": "string" },
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["friendly_name", "path"],
+                  "properties": {
+                    "friendly_name": { "type": "string" },
+                    "path": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
