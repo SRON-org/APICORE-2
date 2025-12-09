@@ -67,11 +67,63 @@ APICORE 是一个由 SRON 团队 研发的​，**面向 UI 的、轻量级 API 
 
 ## 代码补全
 
-开发中……
+通过引入 [Schema 文件](https://raw.githubusercontent.com/SRON-org/APICORE-2/refs/heads/main/APICORE.v2.Schema.json)，编辑器将会为你开启自动补全、实时纠错等功能，极大地提升你编写配置文件的体验。
+
+### 临时配置
+
+#### JSON 格式
+1. 若要本地开发，先将 [APICORE.v2.Schema.json](https://github.com/SRON-org/APICORE-2/blob/main/APICORE.v2.Schema.json) 保存到你的 `.api.json` 配置文件根目录中
+2. 在你的配置文件头部添加 `$schema` 字段，指向该文件的本地路径或远程路径
+
+#### YAML 格式
+
+1. 先将 [APICORE.v2.Schema.json](https://github.com/SRON-org/APICORE-2/blob/main/APICORE.v2.Schema.json) 保存到你的 `.api.yaml` 配置文件根目录中
+2. 在你的配置文件头部添加 `# yaml-language-server: $schema=./APICORE.v2.Schema.json`
+
+#### 本地开发示例
+```json
+{
+  "$schema": "./apicore.schema.json",
+}
+```
+
+#### 远程开发示例
+```json
+{
+  "$schema": "https://raw.githubusercontent.com/SRON-org/APICORE-2/refs/heads/main/APICORE.v2.Schema.json",
+}
+```
+### 全局配置
+
+#### VS Code 配置方法
+1. 在或创建 .vscode/settings.json 文件
+2. 添加以下配置：
+```json
+{
+  "json.schemas": [
+    {
+      "fileMatch": ["*.api.json"],
+      "url": "https://raw.githubusercontent.com/SRON-org/APICORE-2/refs/heads/main/APICORE.v2.Schema.json"
+    }
+  ],
+  "yaml.schemas": {
+    "https://raw.githubusercontent.com/SRON-org/APICORE-2/refs/heads/main/APICORE.v2.Schema.json": "*.api.yaml"
+  }
+}
+```
+
+### JetBrains IDE 配置方法
+1. 打开 Preferences > Languages & Frameworks > Schemas and DTDs > JSON Schema Mappings
+2. 添加新映射：
+- Schema file or URL: https://raw.githubusercontent.com/SRON-org/APICORE-2/refs/heads/main/APICORE.v2.Schema.json
+- File path pattern: *.api.json
+- Schema version: Draft 7
 
 ## 标准和示例
 
-开发中……
+编码: UTF-8
+
+参考：[完整示例](https://github.com/SRON-org/APICORE-2/wiki/Create-a-New-APICORE-Configuration-File#7-%E5%AE%8C%E6%95%B4%E7%A4%BA%E4%BE%8B)
 
 ## 开放
 
