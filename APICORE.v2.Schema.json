@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/SRON-org/APICORE-2/schemas/v2.0/apicore.schema.json",
+  "$id": "https://github.com/SRON-org/APICORE-2/schemas/v2.0/APICORE.v2.Schema.json",
   "title": "APICORE v2 Configuration File",
   "description": "Configuration specification for APICORE v2 API interactions",
   "type": "object",
