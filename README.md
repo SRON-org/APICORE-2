@@ -63,6 +63,8 @@ APICORE 是一个由 SRON 团队 研发的​，**面向 UI 的、轻量级 API 
 
 [**小树壁纸Next**](https://github.com/shu-shu-1/Little-Tree-Wallpaper-Next-Flet)：一款多功能桌面壁纸应用程序
 
+以及更多与API请求相关的应用程序，均与 APICORE v2 规范极其搭配哦
+
 ## 代码补全
 
 开发中……
