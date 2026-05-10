@@ -1,6 +1,6 @@
 <div align="center">
 
-<image src="https://github.com/user-attachments/assets/3b85e1ef-35e3-4f95-bf5e-90ca7f8fae13" height="86"/>
+<img width="86" height="86" alt="APICORE娘-圆角图标" src="https://github.com/user-attachments/assets/17814599-a2af-4605-8a18-be7d1fef2c8d" />
 
 # APICORE v2
 
@@ -17,9 +17,9 @@ The NEXT-Generation API Configuration & Orchestration Runtime Engine.
 </div>
 
 
-> [!WARNING]
+> [!IMPORTANT]
 >
-> 此版本的规范正在研发和测试中，目前暂未投入使用。请转到 [APICORE v1](https://github.com/SRON-org/APICORE/)
+> 此版本的规范正在公测阶段。若要寻找已经投入使用的版本，请转到 [APICORE v1](https://github.com/SRON-org/APICORE/)
 
 
 ## 简介
@@ -57,7 +57,9 @@ APICORE 是一个由 SRON 团队 研发的​，**面向 UI 的、轻量级 API 
 
 这里有详细的[编写指南](https://github.com/SRON-org/APICORE-2/wiki/Create-a-New-APICORE-Configuration-File)。通过指南，你可以详细和准确地编写符合 APICORE 规范的API配置
 
-## 应用场景
+## 生态和应用场景
+
+[**APICORE_Python**](https://github.com/SRON-org/APICORE_Python/tree/main)：在 Python 上提供对使用 APICORE **v2** 规范的文件的进行解析
 
 [**壁纸生成器 NEXT**](https://github.com/SRInternet-Studio/Wallpaper-generator/)：下一代个性化聚合图片生成平台
 
