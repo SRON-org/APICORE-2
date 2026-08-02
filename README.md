@@ -12,7 +12,7 @@ The NEXT-Generation API Configuration & Orchestration Runtime Engine.
 
 **More efficient, all-round capable.**
 
-​​下一代高效、全能的 API 配置与编排运行时规范​格式标准
+​一个专为人类与 API 在 UI 界面上交互而诞生的 API 配置与编排运行时规范​格式标准
 
 </div>
 
