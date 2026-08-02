@@ -59,7 +59,7 @@ APICORE 是一个由 SRON 团队 研发的​，**面向 UI 的、轻量级 API 
 
 ## 生态和应用场景
 
-[**APICORE_Python**](https://github.com/SRON-org/APICORE_Python/tree/main)：在 Python 上提供对使用 APICORE **v2** 规范的文件的进行解析
+[**APICORE_Python**](https://github.com/SRON-org/APICORE_Python/tree/main)：在 Python 上提供对使用 APICORE **v2.1, v2.0** 甚至是 **v1.0** 规范的文件的进行解析
 
 [**壁纸生成器 NEXT**](https://github.com/SRInternet-Studio/Wallpaper-generator/)：下一代个性化聚合图片生成平台
 
