@@ -2,11 +2,11 @@
 
 <img width="86" height="86" alt="APICORE娘-圆角图标" src="https://github.com/user-attachments/assets/17814599-a2af-4605-8a18-be7d1fef2c8d" />
 
-# APICORE v2
+# APICORE v2.1
 
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 ![Python版本](https://img.shields.io/badge/Python-3.8%2B-brightgreen)
-![版本号](https://img.shields.io/badge/Version-2.0.0-blue)
+![版本号](https://img.shields.io/badge/Version-2.1.0-lightblue)
 
 The NEXT-Generation API Configuration & Orchestration Runtime Engine.
 
@@ -17,7 +17,7 @@ The NEXT-Generation API Configuration & Orchestration Runtime Engine.
 </div>
 
 
-> [!IMPORTANT]
+> [!NOTE]
 >
 > 此版本的规范正在公测阶段。若要寻找已经投入使用的版本，请转到 [APICORE v1](https://github.com/SRON-org/APICORE/)
 
@@ -69,7 +69,7 @@ APICORE 是一个由 SRON 团队 研发的​，**面向 UI 的、轻量级 API 
 
 ## 代码补全
 
-通过引入 [Schema 文件](https://raw.githubusercontent.com/SRON-org/APICORE-2/refs/heads/main/APICORE.v2.Schema.json)，编辑器将会为你开启自动补全、实时纠错等功能，极大地提升你编写配置文件的体验。
+通过引入 [Schema 文件（已兼容 v2.1）](https://raw.githubusercontent.com/SRON-org/APICORE-2/refs/heads/main/APICORE.v2.Schema.json)，编辑器将会为你开启自动补全、实时纠错等功能，极大地提升你编写配置文件的体验。
 
 ### 临时配置
 
@@ -85,7 +85,7 @@ APICORE 是一个由 SRON 团队 研发的​，**面向 UI 的、轻量级 API 
 #### 本地开发示例
 ```json
 {
-  "$schema": "./apicore.schema.json",
+  "$schema": "./APICORE.v2.Schema.json",
 }
 ```
 
